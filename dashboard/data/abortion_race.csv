@@ -1,0 +1,8 @@
+borough,total,hispanic_ratio,h_white_only_ratio,h_black_only_ratio,non_hispanic_ratio,nh_white_only_ratio,nh_black_only_ratio,nh_other_ratio
+New York State,336.5,344.4,189,534.6,334.1,142.9,758.5,202.1
+New York City,450.5,428.1,167.7,570.6,459.4,165.6,851.7,243.2
+Bronx,623.3,500.2,172.2,684.6,786.6,369.8,734.3,419.3
+Brooklyn,351.7,393.1,214.2,432,343.7,88.6,837.7,162.5
+Manhattan,537.5,519.8,220.6,601.4,542.9,320.8,1228.3,253.2
+Queens,445.7,329.4,80.4,287.4,494.2,155,895.1,273.1
+Staten Island,275.6,311.7,377.9,311.8,264.7,137.9,692.2,142.9
