@@ -119,7 +119,7 @@ race = merged_race %>% distinct(race) %>% pull()
 
 radioButtons(
   inputId = "race_choice",
-  label = h3("Race"),
+  label = h3("Race/Ethnicity"),
   choices = race,
   selected = "Non-Hispanic White"
 )
