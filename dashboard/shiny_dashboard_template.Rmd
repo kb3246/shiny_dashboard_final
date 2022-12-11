@@ -1,7 +1,10 @@
 ---
-title: "Shiny Dashboard"
+title: "Dashboard"
 output: 
   flexdashboard::flex_dashboard:
+    navbar:
+      - { title: "Home", href: "https://elaineyanxi-chen.github.io/p8105-finalproject.github.io/index.html", align: left }
+    theme: journal
     orientation: columns
     vertical_layout: fill
 runtime: shiny
@@ -40,7 +43,13 @@ ny_abortion_year =
 ny_year_geo <- 
   full_join(ny_counties, ny_abortion_year, by = "name") %>%
   select(name, total, year, geometry) %>% 
-  filter(name != "Hamilton/Essex") %>% filter(name != "New York State") %>% filter(name != "New York City")
+  filter(name != "Hamilton/Essex") %>% filter(name != "New York State") %>%
+  filter(name != "New York City") %>% 
+  mutate(
+    name = replace(name, name == "Richmond", "Staten Island"), 
+    name = replace(name, name == "Kings", "Brooklyn"),
+    name = replace(name, name == "New York", "Manhattan")
+  )
 ```
 
 
@@ -94,7 +103,7 @@ Column {.sidebar}
 sliderInput(
   inputId = "year_choice",
   label = h3("Year"),
-  min = 2014, max = 2019, value = 2014
+  min = 2014, max = 2019, value = 2014, sep = ""
 )
 
 age = merged_age %>% distinct(age) %>% pull()
@@ -119,7 +128,7 @@ radioButtons(
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Rates of Abortion Across the Years in Counties within New York State
 
 
 ```{r map}
@@ -135,7 +144,7 @@ renderPlotly({
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Abortions Ratios in New York State Counties by Age
 
 ```{r age}
 renderPlotly({
@@ -144,14 +153,13 @@ renderPlotly({
     mutate(borough = fct_reorder(borough, abortion)) %>% 
     plot_ly(x = ~borough, y = ~abortion, color = ~borough, colors = "viridis", type = "bar") %>% 
     layout(
-      title = 'Abortions Ratios in New York State Counties', 
       xaxis = list(title = "County"),
-      yaxis = list(title = 'Number of Induced Abortions 
+      yaxis = list(title = 'Induced Abortions 
                    per 1,000 Live Births'))
 }) 
 ```
 
-### Chart C
+### Abortions Ratios in New York State Counties by Race
 
 ```{r race}
 renderPlotly({
@@ -160,9 +168,8 @@ renderPlotly({
     mutate(borough = fct_reorder(borough, abortion)) %>% 
     plot_ly(x = ~borough, y = ~abortion, color = ~borough, colors = "viridis", type = "bar") %>% 
     layout(
-      title = 'Abortions Ratios in New York State Counties', 
       xaxis = list(title = "County"),
-      yaxis = list(title = 'Number of Induced Abortions 
+      yaxis = list(title = 'Induced Abortions 
                    per 1,000 Live Births'))
 }) 
 ```

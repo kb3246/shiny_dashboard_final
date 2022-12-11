@@ -5,7 +5,9 @@ account: kasturi-b
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7865100
-bundleId: 6621441
+bundleId: 6621546
 url: https://kasturi-b.shinyapps.io/shiny_dashboard_template/
-when: 1670714161.40442
-lastSyncTime: 1670714161.40444
+when: 1670717459.6004
+lastSyncTime: 1670717459.60042
+asMultiple: FALSE
+asStatic: FALSE
